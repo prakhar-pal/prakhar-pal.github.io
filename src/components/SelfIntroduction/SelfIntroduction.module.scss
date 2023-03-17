@@ -6,17 +6,4 @@
     }
 }
 
-.bobble {
-    animation: bounce 2s ease-in-out infinite;
-}
-
-$bobble-length: 0.5rem;
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(-25%);
-    }
-    50% {
-        transform: translateY(0);
-    }
-}
 

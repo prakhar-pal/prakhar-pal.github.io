@@ -15,7 +15,7 @@ const SelfIntroduction = ({ onClickDownArrow }) => {
                 <div className="h-10 w-10 flex justify-center left-1/2 absolute bottom-8">
                     <i
                         onClick={onClickDownArrow}
-                        className={clsx("fa fa-chevron-down h-full w-full text-black bg-yellow-300 rounded-full flex items-center justify-center cursor-pointer", style.bobble)}
+                        className={clsx("bounce fa fa-chevron-down h-full w-full text-black bg-yellow-300 rounded-full flex items-center justify-center cursor-pointer")}
                     />
                 </div>
             </div>
