@@ -3,7 +3,7 @@ import style from "./SelfIntroduction.module.scss";
 
 const SelfIntroduction = ({ onClickDownArrow }) => {
     return (
-        <div className="h-screen w-full flex items-center justify-center relative">
+        <div className="h-screen w-full flex items-center justify-center relative select-none">
             <div className="p-4 text-center">
                 <h1 className="text-9xl">Prakhar Pal</h1>
                 <div className="mt-8 text-lg">Software Engineer | Web/Frontend | Open Source Enthusiast </div>
