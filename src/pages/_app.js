@@ -1,5 +1,5 @@
 import Head from "next/head";
-import "../../globals.css";
+import "../../globals.scss";
 
 const App = ({ Component, ...props }) => {
    return (

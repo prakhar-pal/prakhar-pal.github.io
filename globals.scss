@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "font-awesome/css/font-awesome.min.css";
+
+body {
+    color: white;
+    background: rgba(0,0,0,0) linear-gradient(136deg,rgb(68,132,206),rgb(26,215,192),rgb(255,155,17),rgb(155,89,182),rgb(255,127,127),rgb(236,240,241)) repeat scroll 0% 0% / 1200% 1200%;
+    animation: color-loop 50s infinite;
+}
+
+@keyframes color-loop {
+    0% {
+        background-position: 0 7%;
+    }
+    50% {
+        background-position: 100% 94%;
+    }
+    100% {
+        background-position: 0 7%;
+    }
+}
