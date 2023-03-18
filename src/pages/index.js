@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import SelfIntroduction from "../components/SelfIntroduction";
-import SelfProjects from "../components/SelftProjects";
+import SelfProjects from "../components/SelfProjects";
 
 const Home = () => {
   const projectsRef = useRef(null);
