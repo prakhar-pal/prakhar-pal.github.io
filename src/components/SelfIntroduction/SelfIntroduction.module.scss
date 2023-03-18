@@ -1,5 +1,5 @@
-.brand_icons > i {
-    @apply mr-8 text-xl bg-gray-700 h-8 w-8 rounded-full hover:bg-black transition-all duration-500;
+.brand_icons i {
+    // @todo: remove it - move it to the tailwind part as well.
     &::before {
         position: relative;
         top: 0.15rem;

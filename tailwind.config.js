@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        card: '0px 0px 10px gray'
+        card: '0px 0px 10px rgb(217 70 239)'
       }
     },
   },
