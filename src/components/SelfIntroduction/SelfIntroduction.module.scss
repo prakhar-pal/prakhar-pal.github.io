@@ -6,4 +6,11 @@
     }
 }
 
+.intro {
+    background: linear-gradient(315deg,#7a4b83 25%,#112bab, #1166ab) repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
 
