@@ -8,6 +8,9 @@ module.exports = {
     extend: {
       boxShadow: {
         card: '0px 0px 10px rgb(217 70 239)'
+      },
+      backgroundImage: {
+        "gradient-1": "linear-gradient(315deg,#42d392 25%,#647eff)"
       }
     },
   },
