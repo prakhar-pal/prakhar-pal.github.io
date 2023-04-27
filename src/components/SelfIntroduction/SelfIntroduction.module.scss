@@ -1,0 +1,16 @@
+.brand_icons i {
+    // @todo: remove it - move it to the tailwind part as well.
+    &::before {
+        position: relative;
+        top: 0.15rem;
+    }
+}
+
+.intro {
+    background: linear-gradient(315deg,#7a4b83 25%,#112bab, #1166ab) repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
