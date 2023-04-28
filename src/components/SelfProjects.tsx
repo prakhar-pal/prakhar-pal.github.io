@@ -3,6 +3,7 @@ type IProjectCardProps = {
   imgSrc: string;
   description: string;
   name: string;
+  url: string;
 }
 
 const projects = [
@@ -40,13 +41,17 @@ const projects = [
     imgSrc: "https://images.pexels.com/photos/3800541/pexels-photo-3800541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     description: "An app about cricket matches. Know when your favourite teams are playing next, details about running matches and all about the past matches.",
     name: "Cricket App",
-    url: "https://main--mellow-jalebi-a4b57c.netlify.app/marketplace"
+    url: "https://cricket-fan.netlify.app/"
   },
 ]
 
 const ProjectCard = (props: IProjectCardProps) => {
   return (
-    <div className="transition-all duration-50 flex flex-col border-solid border-spacing-1 border-fuchsia-500 rounded-lg shadow-card overflow-hidden cursor-pointer">
+    <a
+      className="transition-all duration-50 flex flex-col border-solid border-spacing-1 border-fuchsia-500 rounded-lg shadow-card overflow-hidden cursor-pointer"
+      href={props.url}
+      target="_blank"
+      >
       <img
         src={props.imgSrc}
         alt={props.name}
@@ -57,7 +62,7 @@ const ProjectCard = (props: IProjectCardProps) => {
       <div className="p-4 h-full bg-transparent opacity-50 hover:opacity-60 bg-white text-black">
         {props.description}
       </div>
-    </div>
+    </a>
   )
 }
 
