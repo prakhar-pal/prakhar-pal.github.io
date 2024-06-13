@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import * as React from "react";
 type IProjectCardProps = {
   imgSrc: string;
@@ -47,29 +48,68 @@ const projects = [
 
 const ProjectCard = (props: IProjectCardProps) => {
   return (
-    <a
-      className="transition-all duration-50 flex flex-col border-solid border-spacing-1 border-fuchsia-500 rounded-lg shadow-card overflow-hidden cursor-pointer"
-      href={props.url}
-      target="_blank"
-      >
-      <img
-        src={props.imgSrc}
-        alt={props.name}
-        height={1080}
-        width={1920}
-        className="rounded-t-lg"
-      />
-      <div className="p-4 h-full bg-transparent opacity-50 hover:opacity-60 bg-white text-black">
-        {props.description}
+    <div
+      className="transition-all duration-50 flex flex-col border-solid border-gray-500 shadow-card border-spacing-1 rounded-lg overflow-hidden min-h-full"
+    >
+      <a href={props.url} target="_blank" className="flex items-center justify-center mb-6  mt-4">
+        <h4 className="text-xl font-semibold text-center">{props.name}</h4>
+        &nbsp;
+        <small className="relative top-0.5 transform duration-200 translate-x-2"> (link &rarr;)</small>
+      </a>
+      <div className="w-11/12 mx-auto">
+        <div className="p-4 h-full bg-transparent opacity-50 hover:opacity-60 bg-white text-black rounded hover:scale-105 transform duration-200">
+          {props.description}
+        </div>
       </div>
-    </a>
+
+    </div>
   )
 }
 
 const SelfProjects = React.forwardRef((_, ref) => {
+  const [showProjectIndex, setShowProjectIndex] = React.useState(0);
+  const [isChangedByUser, setIsChangedByUser] = React.useState(false);
+  const activeProject = React.useMemo(() => {
+    return projects[showProjectIndex];
+  }, [showProjectIndex]);
+
+  function changeProjectIndex(index) {
+    setShowProjectIndex(index);
+    setIsChangedByUser(true);
+  }
+
+  React.useEffect(() => {
+    let id = 0;
+    if (!isChangedByUser) {
+      id = setInterval(() => {
+        setShowProjectIndex(index => {
+          const nextIndex = index === projects.length - 1 ? 0 : index + 1;
+          return nextIndex;
+        })
+      }, 5000);
+    }
+    return () => clearInterval(id);
+  }, [isChangedByUser]);
+
   return (
-    <section ref={ref as any} className="py-8 min-h-screen grid gap-4 grid-cols-2">
-      {projects.map(project => <ProjectCard {...project} key={project.name} />)}
+    <section ref={ref as any} className="py-8 rounded p-4 bg-gray-400">
+      <h4 className="text-center font-semibold text-xl underline text-black">My Personal Projects</h4>
+      <div className="flex mt-6">
+        <ul className="basis-2 shrink-0 flex-grow">
+          {projects.map((project, index) => (
+            <li
+              key={index}
+              onClick={() => changeProjectIndex(index)}
+              className={clsx("mb-4  hover:shadow-xl p-4 rounded cursor-pointer text-white", [index === showProjectIndex ? "bg-gray-500" : "bg-gray-600 "])}>
+              <h5 className="font-semibold text-lg">{project.name}</h5>
+              <p>{project.description}</p>
+            </li>
+          ))}
+        </ul>
+        <div className="basis-1 shrink-0 flex-grow ml-4">
+          <ProjectCard {...activeProject} />
+        </div>
+      </div>
     </section>
   );
 });
