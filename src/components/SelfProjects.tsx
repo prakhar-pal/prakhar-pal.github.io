@@ -81,7 +81,7 @@ const projects: IProjectCardProps[] = [
 const ProjectCard = (props: IProjectCardProps) => {
   return (
     <div
-      className="transition-all duration-50 flex flex-col border-solid border-gray-500 shadow-card border-spacing-1 rounded-lg overflow-hidden min-h-full bg-gray-300 text-black"
+      className="transition-all duration-50 flex flex-col border-solid border-gray-500 shadow-card border-spacing-1 rounded-lg overflow-hidden min-h-full bg-gray-300 text-black pb-4"
     >
       <a href={props.url} target="_blank" className="flex items-center justify-center mb-6  mt-4">
         <h4 className="text-xl font-semibold text-center">{props.name}</h4>
@@ -109,7 +109,7 @@ const SelfProjects = React.forwardRef((_, ref) => {
     return projects[showProjectIndex];
   }, [showProjectIndex]);
 
-  function changeProjectIndex(index) {
+  function changeProjectIndex(index: number) {
     setShowProjectIndex(index);
     setIsChangedByUser(true);
   }
@@ -127,11 +127,36 @@ const SelfProjects = React.forwardRef((_, ref) => {
     return () => clearInterval(id);
   }, [isChangedByUser]);
 
+  function goToNextProject() {
+    const nextIndex = showProjectIndex === projects.length - 1 ? 0 : showProjectIndex + 1;
+    changeProjectIndex(nextIndex);
+  }
+
+  function goToPreviousProject() {
+    const previousIndex = showProjectIndex === 0 ? projects.length - 1 : showProjectIndex - 1;
+    changeProjectIndex(previousIndex);
+  }
+
   return (
     <section ref={ref as any} className="py-8 rounded p-4 bg-gray-400">
       <h4 className="font-semibold text-xl text-center text-black bg-slate-200 py-2 rounded px-4 w-80 mx-auto">My Personal Projects</h4>
+      <div className="flex justify-between text-black md:hidden">
+        <button
+          className="my-8 flex items-center"
+          onClick={goToPreviousProject}>
+          <i className="fa fa-chevron-left h-10 w-10 text-black rounded-full flex items-center justify-center cursor-pointer mr-2" />
+          Previous
+        </button>
+        <button
+          className="flex items-center my-8"
+          onClick={goToNextProject}
+        >
+          Next
+          <i className="fa fa-chevron-right h-10 w-10  rounded-full flex items-center justify-center cursor-pointer ml-2" />
+        </button>
+      </div>
       <div className="flex mt-6">
-        <ul className="basis-2 shrink-0 flex-grow">
+        <ul className="md:block hidden basis-2 shrink-0 flex-grow mr-8">
           {projects.map((project, index) => (
             <li
               key={index}
@@ -147,7 +172,7 @@ const SelfProjects = React.forwardRef((_, ref) => {
             </li>
           ))}
         </ul>
-        <div className="basis-1 shrink-0 flex-grow ml-8">
+        <div className="basis-1 shrink-0 flex-grow">
           <ProjectCard {...activeProject} />
         </div>
       </div>

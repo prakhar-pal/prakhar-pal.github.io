@@ -1,18 +1,36 @@
 import * as React from "react";
 import clsx from "clsx";
 import style from "./SelfIntroduction.module.scss";
+import useDeviceType from "../../hooks/useDeviceType";
 
-const BrandIcon = ({ className }: { className: string }) => <i className={clsx(className, "mr-8 text-xl bg-gray-700 h-8 w-8 rounded-full hover:bg-black transition-all duration-500")} />;
+const BrandIcon = (props: any): React.ReactNode => {
+    const { className }: { className: string } = props;
+    return (
+        <i
+            className={clsx(className,
+                "mr-8 text-xl bg-gray-700 h-8 w-8 rounded-full hover:bg-black transition-all duration-500"
+            )}
+        />
+    );
+}
 
 type ISelfIntroductionProps = {
     onClickDownArrow: () => void;
 }
 const SelfIntroduction = ({ onClickDownArrow }: ISelfIntroductionProps) => {
+    const [shouldShowDownArrow, setShowDownArrow] = React.useState(true);
+    const { isMobile } = useDeviceType();
+    function handleClickDownArrow() {
+        onClickDownArrow();
+        if(isMobile) {
+            setShowDownArrow(false);
+        }
+    }
     return (
         <div className="h-screen w-full flex items-center justify-center relative select-none bg-gradeint-1">
             <div className="p-4 text-center">
                 <div>
-                    <h1 className={"text-9xl "+style.intro}>Prakhar Pal</h1>
+                    <h1 className={"md:text-9xl text-5xl "+style.intro}>Prakhar Pal</h1>
                     <div className="mt-8 text-lg">Software Engineer | Web/Frontend | Open Source Enthusiast </div>
                 </div>
                 <div className={"flex justify-center mt-6 items-center " + style.brand_icons}>
@@ -28,12 +46,14 @@ const SelfIntroduction = ({ onClickDownArrow }: ISelfIntroductionProps) => {
                         </span>
                     </a>
                 </div>
-                <div className="h-10 w-10 flex justify-center left-1/2 absolute bottom-8">
-                    <i
-                        onClick={onClickDownArrow}
-                        className={clsx("bounce fa fa-chevron-down h-full w-full text-black bg-yellow-300 rounded-full flex items-center justify-center cursor-pointer")}
-                    />
-                </div>
+                {shouldShowDownArrow && (
+                    <div className="h-10 w-10 flex justify-center left-1/2 -translate-x-1/2 absolute bottom-8">
+                        <i
+                            onClick={handleClickDownArrow}
+                            className={clsx("bounce fa fa-chevron-down h-full w-full text-black bg-yellow-300 rounded-full flex items-center justify-center cursor-pointer")}
+                        />
+                    </div>
+                )}
             </div>
         </div>
     );
