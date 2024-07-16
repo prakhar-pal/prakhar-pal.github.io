@@ -140,7 +140,7 @@ const SelfProjects = React.forwardRef((_, ref) => {
   return (
     <section ref={ref as any} className="py-8 rounded p-4 bg-gray-400">
       <h4 className="font-semibold text-xl text-center text-black bg-slate-200 py-2 rounded px-4 w-80 mx-auto">My Personal Projects</h4>
-      <div className="flex justify-between text-black">
+      <div className="flex justify-between text-black md:hidden">
         <button
           className="my-8 flex items-center"
           onClick={goToPreviousProject}>
