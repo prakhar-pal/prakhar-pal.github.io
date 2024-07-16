@@ -3,7 +3,7 @@ import "../../globals.scss";
 
 const App = ({ Component, ...props }) => {
    return (
-    <div className="max-w-7xl md:maxw-4/5 mx-auto p-4">
+    <div className="max-w-7xl md:w-4/5 mx-auto p-4">
         <Head>
             <meta charset="UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
